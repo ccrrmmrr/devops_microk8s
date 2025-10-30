@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: alefiengo/angular-frontend:v2.0
+        image: carloscrmr/angular-frontend:v2.2.7
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

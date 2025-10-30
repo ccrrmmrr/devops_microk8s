@@ -28,7 +28,7 @@ RUN apk add --no-cache gettext
 #     echo $TZ > /etc/timezone
 
 # Copy built app from build stage
-COPY --from=build /app/dist/angular-frontend /usr/share/nginx/html
+COPY --from=build /app/dist/angular-frontend-v2 /usr/share/nginx/html
 
 # Copy nginx template (not final config)
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
