@@ -32,15 +32,15 @@
 
 ### Especificaciones Técnicas
 ```text
-- **Proveedor:** Digital Ocean
-- **Instancia:** `carlos-martinez-k8s`
-- **Sistema Operativo:** Ubuntu 24.04 LTS
-- **Recursos:** 2 vCPUs, 4GB RAM
-- **Cluster:** microk8s v1.30
-- **Network:** VPC con MetalLB
-- **Droplet IP:** `138.68.0.0153`
-- **VPC Range:** `138.68.0.0/20`
-- **LoadBalancer IP:**`138.68.10.100`
+- Proveedor: Digital Ocean
+- Instancia: carlos-martinez-k8s
+- Sistema Operativo: Ubuntu 24.04 LTS
+- Recursos: 2 vCPUs, 4GB RAM
+- Cluster: microk8s v1.30
+- Network: VPC con MetalLB
+- Droplet IP: 138.68.0.0153
+- VPC Range:138.68.0.0/20
+- LoadBalancer IP:138.68.10.100
 ```
 
 ### Addons de microk8s Habilitados
