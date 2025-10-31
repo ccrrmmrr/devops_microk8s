@@ -380,33 +380,14 @@ curl http://138.68.10.100/actuator/health
 - Load Balancing Funcional entre múltiples pods
 - Health Checks Operativos
 ```
-### Diagrama
-```
-┌─────────────────┐ ┌──────────────────┐ ┌─────────────────┐
-│ Internet │ │ LoadBalancer │ │ Ingress │
-│ Users │───▶│ MetalLB │───▶│ Controller │
-│ │ │ 138.68.10.100 │ │ Nginx │
-└─────────────────┘ └──────────────────┘ └─────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────────┐
-│ Kubernetes Cluster │
-│ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │
-│ │ Frontend │ │ Backend │ │ Database │ │
-│ │ Service │ │ Service │ │ Service │ │
-│ │ :80 │ │ :8080 │ │ :5432 │ │
-│ └─────────────┘ └─────────────┘ └─────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-
-```
 
 ### Screemshots
 
 - [Verificar Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/verificar_ingres.PNG)
 - [Describe Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/describe_ingres.PNG)
-- [fromtemd](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/frontend.PNG)
-- [EndPoints](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/parte5-endpoints-test.PNG)
-- [IP del Ingress](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/ip_ingres.PNG)
+- [Estado LoadBalance](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/LB_status.PNG)
+- [fromtemd](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/frontend_NewIP.PNG)
+- [EndPoints](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/api_endpoints.PNG)
 
 
 ### 📊 Resultados y Métricas
