@@ -28,7 +28,7 @@
                          └─────────────┘
 ```
 
-## 🛠️ Parte 1:Configuración del Ambiente
+## 🛠️ Parte 1: Configuración del Ambiente
 
 ### Especificaciones Técnicas
 ```text
