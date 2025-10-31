@@ -9,7 +9,7 @@
 - Frontend v2.2: https://hub.docker.com/repository/docker/carloscrmr/angular-frontend/tags
 
 
-### Parte 1: Setup del Ambiente
+## Parte 1: Setup del Ambiente
 **Ambiente utilizado:**
 - [DigitalOcean]
 - Nombre de VM/Droplet: [carlos-martinez-k8s]
@@ -18,25 +18,25 @@
 - Red configurada: [Tipo de red en cloud]
 - Rango MetalLB: [Tu rango de IPs]
 
-### Capturas de pantalla
 
+### Screemshots
 - [microk8s status](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_microk8s.PNG)
 - [Pods running](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_kubectl_get_all.PNG)
-- [navegador accediendo al frontend](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/par:wq!te01_front_end_inicial.PNG)
+- [Frontend vi MetalLB](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_front_end_inicial.PNG)
 - [Instancia Cloud](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_InstanciaCloud.PNG)
 
 
-### Parte 2
+### Parte 2: Backend v2.1
 
 - [Código del endpoint agregado](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/codigo_java.PNG)
 - [docker images](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/docker_images.PNG)
 - [docker_hub](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/dockerHub_tags.PNG)
 - [kubectl rollout status](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/kubectl_rollout_status.PNG)
 - [kubectl get pods](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/kubectl_get_pods.PNG)
-- [curl http://<IP-METALLB>/api/inf](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/api_info.PNG)
+- [API Info](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/api_info.PNG)
 
 
-### Parte 3
+### Parte 3: Frontend v2.2
 
 Código modificado de Angular (screenshots de .html y .ts)
 - [Código modificado de Angular](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/pasrt03/codigo_java.PNG)
@@ -47,7 +47,7 @@ Link a tu imagen en Docker Hub: https://hub.docker.com/r/tu-usuario/angular-fron
 - [información del sistema cargada](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/pasrt03/boton_ver info del sistema.PNG)
 
 
-### Parte 4
+### Parte 4: Gestión de Versiones
 
 - [kubectl rollout history del backend](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/rollout_history_backend.PNG)
 - [kubectl rollout history del frontend](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/rollout_history_frontend.PNG)
@@ -59,7 +59,7 @@ Link a tu imagen en Docker Hub: https://hub.docker.com/r/tu-usuario/angular-fron
 
 
 
-### Parte 5
+### Parte 5: Ingress + MetalLB
 
 Screenshot de kubectl get ingress mostrando la IP asignada
 - [Verificar Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/verificar_ingres.PNG)
