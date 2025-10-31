@@ -1,263 +1,62 @@
-# Proyecto Integrador - Docker & Kubernetes
-
-Aplicación full-stack progresiva que evoluciona clase a clase, desde una API REST simple hasta un sistema completo desplegado en Kubernetes con microservicios, base de datos, cache, frontend, Ingress y HPA.
 
-**Autor:** Alejandro Fiengo ([alefiengo.dev](https://alefiengo.dev))
-**Curso:** Docker & Kubernetes - Contenedores y Orquestación en la Práctica
-**Institución:** i-Quattro
 
----
 
-## Inicio Rápido
+## Capturas de pantalla
+### Parte 1
+- [microk8s status](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte01/InstanciaCloud.png)
+- [kubectl get all -n proyecto-integrador](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte01/kubectl get all -n proyecto-integrador.png)
+- [navegador accediendo al frontend](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte01/front_end_inicial.png)
+- [Instancia Cloud](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte01/InstanciaCloud.png)
 
-Elige tu plataforma de despliegue:
-
-### Docker Compose (Clases 2-5)
-```bash
-cd docker-compose/
-docker compose up -d --build
-```
-**[Guía completa Docker Compose](docker-compose/README.md)**
-
-### Kubernetes (Clases 6-8)
-```bash
-cd k8s/
-# Seguir guía de despliegue según tu cluster
-```
-**[Guía de Despliegue Kubernetes (minikube)](k8s/DEPLOYMENT_GUIDE.md)**
-**[Guía de Despliegue Kubernetes (microk8s)](k8s/DEPLOYMENT_GUIDE_MICROK8S.md)**
-
----
-
-## Evolución del Proyecto
-
-| Versión | Tag | Stack | Qué se agrega |
-|---------|-----|-------|---------------|
-| **v1.0** | `v1.0-clase2` | Spring Boot | REST API in-memory con Dockerfile multi-stage |
-| **v1.1** | `v1.1-clase3` | + PostgreSQL | Persistencia con Spring Data JPA + Docker Compose |
-| **v1.2** | `v1.2-clase4` | + Redis + Angular + Kong | Cache, frontend SPA, API Gateway |
-| **v1.3** | `v1.3-clase5` | + Seguridad | Trivy scan, optimizaciones, non-root users |
-| **v2.0** | `v2.0-clases6-7-8` | **Migración completa a Kubernetes** | Deployments, Services, ConfigMaps, Secrets, StatefulSet, Ingress, HPA |
 
----
+### Parte 2
 
-## Arquitectura
+- [C�digo del endpoint agregado](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte02/codigo_java.png)
+- [docker images](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte02/docker_images.PNG)
+- [docker_hub](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte02/dockerHub_tags.png)
+- [kubectl rollout status](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte02/kubectl_rollout_status.png)
+- [kubectl get pods](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte02/kubectl_get_pods.png)
+- [curl http://<IP-METALLB>/api/inf](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte02/api_info.png)
 
-### Docker Compose (v1.2 - v1.3)
 
-```
-Cliente → Angular :4200 → Kong :8000 → Spring Boot :8080
-                                              |
-                                              +-- Redis :6379
-                                              +-- PostgreSQL :5432
-```
-
-**[Ver arquitectura detallada Docker Compose](ARCHITECTURE.md#arquitectura-docker-compose-v12)**
+### Parte 3
 
-### Kubernetes (v2.0)
-
-```
-Cliente → Ingress :80 → Frontend Pods (nginx BFF)
-                   |         |
-                   |         +-- /api/* → API Pods (2-5 HPA)
-                   |                           |
-                   +-- /api/* → API Service    +-- Redis
-                                               +-- PostgreSQL (StatefulSet + PVC)
-```
+C�digo modificado de Angular (screenshots de .html y .ts)
+- [C�digo modificado de Angular](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte03/codigo_java.png)
+Link a tu imagen en Docker Hub: https://hub.docker.com/r/tu-usuario/angular-frontend/tags
+- [docker images](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte03/docker_hub.PNG)
+- [kubectl get pods -w](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte03/roll_out.png)
+- [bot�n "Ver Info del Sistema"](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte03/info del sistema.png)
+- [informaci�n del sistema cargada](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte03/boton_ver info del sistema.png)
 
-**[Ver arquitectura detallada Kubernetes](ARCHITECTURE.md#arquitectura-kubernetes-v20)**
 
----
+### Parte 4
 
-## Stack Tecnológico
+- [kubectl rollout history del backend](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte04/rollout_history_backend.png)
+- [kubectl rollout history del frontend](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte04/rollout_history_frontend.PNG)
+- [proceso de rollback (undo)](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte04/rollback_undo.png)
+- [/api/info dej� de funcionar despu�s del rollback](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte04/api_info_NOK.png)
+- [proceso de rollforward (undo)](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte04/rollforward.png)
+- [/api/info dej� vuelve a funcionar](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte04/api_info_OK.png)
+- [Explicaci�n en tus propias palabras: �Qu� hace kubectl rollout undo?]
 
-### Backend
-- **Spring Boot** 3.5.6 (Java 17)
-- **PostgreSQL** 15 (base de datos)
-- **Redis** 7 (cache)
-- **Spring Data JPA** (ORM)
-- **Spring Cache** (abstraction)
-- **Spring Actuator** (metrics/health)
 
-### Frontend
-- **Angular** 17+
-- **nginx** (servidor + BFF proxy)
-
-### Infraestructura
-
-#### Docker Compose
-- **Kong** 3.4 (API Gateway)
-- **Docker Compose** (orquestación)
-- Multi-stage builds
-- Non-root users
 
-#### Kubernetes
-- **Deployments** + **Services**
-- **StatefulSet** (PostgreSQL con persistencia)
-- **ConfigMaps** + **Secrets**
-- **NGINX Ingress** (routing HTTP)
-- **HPA** (Horizontal Pod Autoscaler)
-- **Health Probes** (liveness, readiness, startup)
-- **BFF Pattern** (nginx proxy en frontend)
+### Parte 5
 
----
+Screenshot de kubectl get ingress mostrando la IP asignada
+- [Verificar Ingres](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte05/verificar_ingres.png)
 
-## Endpoints de la API
+Screenshot de kubectl describe ingress mostrando las rutas configuradas
+- [Describe Ingres](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte05/describe_ingres.PNG)
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| GET | `/` | Página de bienvenida |
-| GET | `/api/greeting` | Mensaje de saludo |
-| GET | `/api/info` | Información de la aplicación |
-| GET | `/api/users` | Listar usuarios (con cache) |
-| GET | `/api/users/{id}` | Obtener usuario por ID |
-| POST | `/api/users` | Crear usuario |
-| PUT | `/api/users/{id}` | Actualizar usuario |
-| DELETE | `/api/users/{id}` | Eliminar usuario |
-| GET | `/actuator/health` | Health check |
-| GET | `/actuator/health/liveness` | Liveness probe (K8s) |
-| GET | `/actuator/health/readiness` | Readiness probe (K8s) |
+Screenshot del navegador accediendo a http://<IP-METALLB>/ (frontend)
+- [fromtemd](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte05/frontend.png)
 
----
+Screenshot de EndPoints
+- [EndPoints](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte05/parte5-endpoints-test.png)
 
-## Documentación
-
-### Guías de Despliegue
-- **[Docker Compose](docker-compose/README.md)** - Despliegue con Docker Compose (v1.2-v1.3)
-- **[Kubernetes (minikube)](k8s/DEPLOYMENT_GUIDE.md)** - Guía paso a paso para minikube
-- **[Kubernetes (microk8s)](k8s/DEPLOYMENT_GUIDE_MICROK8S.md)** - Guía paso a paso para microk8s
-
-### Documentación Técnica
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Diagramas de arquitectura, flujos de datos y decisiones de diseño
-- **[SECURITY.md](SECURITY.md)** - Buenas prácticas de seguridad y escaneo con Trivy (v1.3)
-
----
-
-## Trabajar con Tags
-
-Este proyecto usa tags de Git para cada versión del curso:
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/alefiengo/proyecto-integrador-docker-k8s.git
-cd proyecto-integrador-docker-k8s
-
-# Ver todas las versiones disponibles
-git tag
-
-# Checkout a una versión específica
-git checkout v1.0-clase2    # Versión básica (Clase 2)
-git checkout v1.1-clase3    # Con PostgreSQL (Clase 3)
-git checkout v1.2-clase4    # Con Redis, Angular, Kong (Clase 4)
-git checkout v1.3-clase5    # Con seguridad (Clase 5)
-git checkout v2.0-clases6-7-8  # Kubernetes completo (Clases 6-8)
-
-# Comparar cambios entre versiones
-git diff v1.2-clase4 v1.3-clase5
-```
-
----
-
-## Verificación Rápida
-
-### Docker Compose
-```bash
-# Levantar servicios
-cd docker-compose/
-docker compose up -d
-
-# Verificar que todo funciona
-curl http://localhost:8000/api/users  # Via Kong
-curl http://localhost:4200            # Frontend
-
-# Ver logs
-docker compose logs -f app
-```
-
-### Kubernetes
-```bash
-# Desplegar
-cd k8s/
-kubectl apply -f 00-namespace/
-kubectl apply -f 01-configmaps/
-kubectl apply -f 02-secrets/
-# ... (ver guía completa)
-
-# Verificar
-kubectl get all -n proyecto-integrador
-
-# Port-forward para acceder
-kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80
-
-# Acceder
-curl http://localhost:8080/api/users
-curl http://localhost:8080/           # Frontend
-```
-
----
-
-## Desarrollo
-
-### Requisitos Previos
-
-- **Docker** Desktop o Docker Engine
-- **Docker Compose** v2
-- **Java** 17+
-- **Maven** 3.9+
-- **Node.js** 18+ (para Angular)
-
-### Kubernetes (adicional)
-- **minikube** o **microk8s** o cluster cloud
-- **kubectl**
-- **Helm** 3+ (opcional)
-
-### Construir Imágenes
-
-```bash
-# Backend
-docker build -t alefiengo/springboot-api:v2.0 .
-
-# Frontend
-docker build -t alefiengo/angular-frontend:v2.0 ./frontend/
-
-# Publicar a Docker Hub (opcional)
-docker login
-docker push alefiengo/springboot-api:v2.0
-docker push alefiengo/angular-frontend:v2.0
-```
-
----
-
-## 🤝 Contribuir
-
-Este es un proyecto educativo para el curso de Docker & Kubernetes. Si encuentras errores o mejoras:
-
-1. Haz fork del proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/mejora`)
-3. Commit tus cambios (`git commit -m 'feat: agregar mejora'`)
-4. Push a la rama (`git push origin feature/mejora`)
-5. Abre un Pull Request
-
----
-
-## 📝 Licencia
-
-Este proyecto es material educativo desarrollado por Alejandro Fiengo para el curso de Docker & Kubernetes en i-Quattro.
-
----
-
-## 📞 Contacto
-
-- **Autor:** Alejandro Fiengo
-- **Website:** [alefiengo.dev](https://alefiengo.dev)
-- **GitHub:** [@alefiengo](https://github.com/alefiengo)
-- **Curso:** Docker & Kubernetes - i-Quattro
-
----
-
-## Recursos
-
-- [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/)
-- [Docker Documentation](https://docs.docker.com/)
-- [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [Angular Documentation](https://angular.io/docs)
+Screenshot de curl a /actuator/health mostrando status UP
+- [proceso de rollforward (undo)](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte05/rollforward.png)
+IP del Ingress (anotar)
+- [/api/info dej� vuelve a funcionar](https://github.com/ccrrmmrr/curso-docker-kubernetes-tareas/blob/main/clase8/screenshots/parte05/ip_ingres.png)
