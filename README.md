@@ -211,6 +211,194 @@ Kubernetes.
 
 
 ### 🌐 Parte 5: Ingress + MetalLB
+#### 🎯 Objetivo Cumplido
+Configurar acceso externo a la aplicación mediante Ingress Controller y MetalLB como LoadBalancer en Digital Ocean.
+
+#### 🔧 Configuración Implementada
+##### Ingress Controller (Nginx)
+
+```yaml
+# k8s/07-ingress/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  namespace: proyecto-integrador
+  labels:
+    app: proyecto-integrador
+    version: v2.0
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: public
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 80
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: api-service
+            port:
+              number: 8080
+      - path: /actuator
+        pathType: Prefix
+        backend:
+          service:
+            name: api-service
+            port:
+              number: 8080
+```
+
+##### Servicio LoadBalancer para Ingress Controller
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-microk8s-controller
+  namespace: ingress
+spec:
+  type: LoadBalancer
+  selector:
+    name: nginx-ingress-microk8s
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 443
+```
+
+#### MetalLB Configuration
+```bash
+# Habilitar MetalLB con rango de IPs en la VPC
+microk8s enable metallb:138.68.10.100-138.68.10.110
+```
+### 🚀 Resultado Final
+
+#### Estado del LoadBalancer
+```bash
+kubectl get svc -n ingress
+```
+```text
+NAME                                TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                      AGE
+nginx-ingress-microk8s-controller   LoadBalancer   10.152.183.197   138.68.10.100   80:32747/TCP,443:31223/TCP   15m
+```
+
+#### Estado del Ingress
+```bash
+kubectl get ingress -n proyecto-integrador
+```
+```text
+NAME          CLASS    HOSTS   ADDRESS     PORTS   AGE
+app-ingress   public   *       127.0.0.1   80      43h
+```
+
+### 🔍 Explicación Técnica
+#### Flujo de Tráfico
+```text
+Internet User
+    ↓
+138.68.10.100:80 (LoadBalancer IP)
+    ↓
+nginx-ingress-microk8s-controller Service
+    ↓
+nginx-ingress-microk8s-controller-mb9j7 Pod
+    ↓
+Ingress Rules (app-ingress)
+    ↓
+frontend-service (/) | api-service (/api, /actuator)
+    ↓
+frontend Pods | api Pods
+```
+
+#### Routing Configurado
+```
+- / → frontend-service:80 (Angular Frontend)
+- /api/* → api-service:8080 (Spring Boot API)
+- /actuator/* → api-service:8080 (Spring Boot Health Checks)
+
+```
+### ✅ Verificación de Funcionamiento
+#### Desde Terminal
+```bash
+# Frontend
+curl http://138.68.10.100/
+
+# API Endpoints
+curl http://138.68.10.100/api/info
+curl http://138.68.10.100/api/users
+curl http://138.68.10.100/actuator/health
+
+# Respuesta esperada del endpoint /api/info:
+{
+  "alumno": "CARLOS MARTINEZ",
+  "version": "v2.1",
+  "curso": "Docker & Kubernetes - i-Quattro",
+  "timestamp": "2025-10-31T14:18:43.739080638",
+  "hostname": "api-d89c7785f-plbrd"
+}
+```
+#### Desde Navegador
+```
+- URL Principal: http://138.68.10.100/
+- Funcionalidad: Formulario de registro + "Ver Info del Sistema"
+```
+### 🐛 Troubleshooting Resuelto
+```
+- Problema: Servicio LoadBalancer sin Endpoints
+- Síntoma: Servicio creado pero sin tráfico (ENDPOINTS: <none>)
+- Causa: Selector incorrecto en la definición del Service
+- Solución: Usar selector name: nginx-ingress-microk8s que coincide con los labels del pod del ingress controller
+
+- Problema: Ingress muestra ADDRESS: 127.0.0.1
+- Explicación: Comportamiento normal del ingress controller de microk8s configurado con --publish-status-address=127.0.0.1. No afecta el funcionamiento externo.
+```
+### 🎯 Aprendizajes Clave
+```
+- LoadBalancer vs Ingress: MetalLB proporciona la IP externa, Ingress maneja el routing interno
+- Selector Matching: Los servicios deben coincidir exactamente con los labels de los pods
+- Cloud Networking: En Digital Ocean, usar IPs dentro del rango VPC para MetalLB
+- External Access: Verificación desde múltiples dispositivos para confirmar accesibilidad
+```
+### 📊 Métricas de Éxito
+```
+- IP Externa Asignada: 138.68.10.100
+- Todos los Endpoints Respondiendo
+- Acceso desde Internet Confirmado
+- Load Balancing Funcional entre múltiples pods
+- Health Checks Operativos
+```
+### Diagrama
+```
+┌─────────────────┐ ┌──────────────────┐ ┌─────────────────┐
+│ Internet │ │ LoadBalancer │ │ Ingress │
+│ Users │───▶│ MetalLB │───▶│ Controller │
+│ │ │ 138.68.10.100 │ │ Nginx │
+└─────────────────┘ └──────────────────┘ └─────────────────┘
+│
+▼
+┌─────────────────────────────────────────────────────────────────┐
+│ Kubernetes Cluster │
+│ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │
+│ │ Frontend │ │ Backend │ │ Database │ │
+│ │ Service │ │ Service │ │ Service │ │
+│ │ :80 │ │ :8080 │ │ :5432 │ │
+│ └─────────────┘ └─────────────┘ └─────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+
+```
 
 ### Screemshots
 
