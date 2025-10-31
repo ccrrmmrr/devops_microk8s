@@ -48,7 +48,7 @@ microk8s enable metrics-server
 microk8s enable metallb:10.120.0.100-10.120.0.110
 ```
 
-## 📁 Estructura del Proyecto
+### 📁 Estructura del Proyecto
 ```bash
 devops_microk8s/
 ├── k8s/                    # Manifiestos de Kubernetes
