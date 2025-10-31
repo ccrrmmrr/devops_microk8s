@@ -116,7 +116,7 @@ kubectl rollout status deployment/api -n proyecto-integrador
 
 ### Modificaciones en Angular 
 
-#### app.component.html
+#### app.component.html:
 ```bash
 
 <div class="form-group">
@@ -134,7 +134,7 @@ kubectl rollout status deployment/api -n proyecto-integrador
 
 ```
 
-#### app.component.ts
+#### app.component.ts:
 
 ```bash
 
@@ -153,6 +153,13 @@ getSystemInfo(): void {
 }
 ```
 
+#### Deployment:
+
+```bash
+docker build -t ccrrmmrr/angular-frontend:v2.2 .
+docker push ccrrmmrr/angular-frontend:v2.2
+kubectl apply -f k8s/06-frontend/frontend-deployment.yaml
+```
 ### Screemshots
 
 - [Código modificado de Angular](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/cod_change.PNG)
@@ -163,7 +170,37 @@ getSystemInfo(): void {
 - [información del sistema cargada](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/boton_sistema.PNG)
 
 
-### Parte 4: Gestión de Versiones
+### 🔄 Parte 4: Gestión de Versiones
+
+#### Comandos de Rollout:
+
+```bash
+
+# Historial de deployments
+kubectl rollout history deployment/api -n proyecto-integrador
+kubectl rollout history deployment/frontend -n proyecto-integrador
+
+# Rollback a versión anterior
+kubectl rollout undo deployment/api -n proyecto-integrador
+
+# Rollforward específico
+kubectl rollout undo deployment/api --to-revision=2 -n proyecto-integrador
+
+# Reinicio forzado
+kubectl rollout restart deployment/api -n proyecto-integrador
+
+```
+
+#### ¿Qué hace kubectl rollout undo?
+```bash
+El comando kubectl rollout undo revierte un deployment a su revisión anterior, 
+realizando  un  rolling update  automático que mantiene  la disponibilidad del 
+servicio  durante el proceso. Es equivalente a un "ctrl+Z" para deployments de 
+Kubernetes.
+
+```
+
+### Screemshots
 
 - [kubectl rollout history del backend](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/rollout_history_backend.PNG)
 - [kubectl rollout history del frontend](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/rollout_history_frontend.PNG)
@@ -171,14 +208,59 @@ getSystemInfo(): void {
 - [/api/info dejó de funcionar después del rollback](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/api_info_NOK.PNG)
 - [proceso de rollforward (undo)](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/rollforward.PNG)
 - [/api/info vuelve a funcionar](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/api_info_OK.PNG)
-- [Explicación en tus propias palabras: ¿Qué hace kubectl rollout undo?]
 
 
+### 🌐 Parte 5: Ingress + MetalLB
 
-### Parte 5: Ingress + MetalLB
+### Screemshots
 
 - [Verificar Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/verificar_ingres.PNG)
 - [Describe Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/describe_ingres.PNG)
 - [fromtemd](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/frontend.PNG)
 - [EndPoints](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/parte5-endpoints-test.PNG)
 - [IP del Ingress](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/ip_ingres.PNG)
+
+
+### 📊 Resultados y Métricas
+
+#### Estado Final del Cluster
+```bash
+# Todos los recursos desplegados
+kubectl get all -n proyecto-integrador
+
+# Estado de los deployments
+kubectl get deployments -n proyecto-integrador
+
+# Recursos utilizados
+kubectl top pods -n proyecto-integrador
+
+```
+
+### 🎯 Conclusiones y Aprendizajes
+
+#### Principales Aprendizajes
+```bash
+1. Workflow CI/CD en Kubernetes:
+   Aprendí el proceso completo de build, push y deploy de aplicaciones en un cluster Kubernetes.
+
+2. Gestión de Estado: 
+   Comprendí cómo Kubernetes maneja los rolling updates y rollbacks manteniendo la disponibilidad.
+
+3. Networking: 
+   Entendí la configuración de Ingress controllers y MetalLB para exposición de servicios.
+
+4. Troubleshooting: 
+   Desarrollé habilidades para diagnosticar y resolver problemas comunes en deployments.
+```
+
+#### Aplicaciones en Proyectos Reales
+```bash
+Este proyecto simula un workflow empresarial real donde:
+
+- Los desarrolladores actualizan código y construyen imágenes
+- Las imágenes se publican en un registry (Docker Hub)
+- Kubernetes automáticamente despliega las nuevas versiones
+- Se mantiene alta disponibilidad durante las actualizaciones
+- Se puede revertir cambios fácilmente si hay problemas
+```
+
