@@ -1,23 +1,65 @@
 # Proyecto Final - Docker & Kubernetes
 
-**Alumno:** [Carlos Roberto Martinez Rivadeneira]
-**Fecha:** [30-10-2025]
+**Alumno:** Carlos Roberto Martinez Rivadeneira
+**Fecha:**  30-10-2025
 **Curso:** Docker & Kubernetes - i-Quattro
 
-## Links de Docker Hub
-- Backend v2.1: https://hub.docker.com/repository/docker/carloscrmr/springboot-api/tags
-- Frontend v2.2: https://hub.docker.com/repository/docker/carloscrmr/angular-frontend/tags
+## 🔗 Enlaces Importantes
 
+- **Repositorio GitHub:** https://github.com/ccrrmmrr/devops_microk8s
+- **Backend v2.1:** https://hub.docker.com/repository/docker/carloscrmr/springboot-api/tags
+- **Frontend v2.2:** https://hub.docker.com/repository/docker/carloscrmr/angular-frontend/tags
 
-## Parte 1: Setup del Ambiente
-**Ambiente utilizado:**
-- [DigitalOcean]
-- Nombre de VM/Droplet: [carlos-martinez-k8s]
-- Sistema operativo: Ubuntu 24.04 LTS
-- Recursos: 4GB RAM, 2 CPU cores
-- Red configurada: [Tipo de red en cloud]
-- Rango MetalLB: [Tu rango de IPs]
+## 🏗️ Arquitectura del Proyecto
 
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│ Frontend        │    │ Backend          │    │ Base de         │
+│ Angular         │◄──►│ Spring Boot      │◄──►│ Datos           │
+│ v2.2            │    │ v2.1             │    │ PostgreSQL      │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+      │                         │                     │
+      │                         │                     │
+      └─────────────────────────┼─────────────────────┘
+                                │
+                         ┌──────▼──────┐
+                         │   Redis     │
+                         │   Cache     │
+                         └─────────────┘
+## 🛠️ Parte 1:Configuración del Ambiente
+
+### Especificaciones Técnicas
+- **Proveedor:** Digital Ocean
+- **Instancia:** `cesar-ramirez-k8s`
+- **Sistema Operativo:** Ubuntu 24.04 LTS
+- **Recursos:** 2 vCPUs, 4GB RAM
+- **Cluster:** microk8s v1.30
+- **Network:** VPC con MetalLB
+
+### Addons de microk8s Habilitados
+```bash
+# Comandos ejecutados
+microk8s enable dns
+microk8s enable storage
+microk8s enable ingress
+microk8s enable metrics-server
+microk8s enable metallb:10.120.0.100-10.120.0.110
+```
+
+## 📁 Estructura del Proyecto
+```bash
+devops_microk8s/
+├── k8s/                    # Manifiestos de Kubernetes
+│   ├── 01-namespace/
+│   ├── 02-secrets/
+│   ├── 03-configmaps/
+│   ├── 04-database/
+│   ├── 05-backend/
+│   └── 06-frontend/
+├── src/                    # Código fuente backend
+├── frontend/               # Código fuente frontend
+├── screenshots/            # Evidencias del proyecto
+└── README.md
+```
 
 ### Screemshots
 - [microk8s status](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_microk8s.PNG)
