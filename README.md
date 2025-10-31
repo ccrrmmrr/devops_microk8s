@@ -408,7 +408,7 @@ kubectl top pods -n proyecto-integrador
 
 
 
-## 🎯 Parte6. Conclusiones y Aprendizajes
+## 🎯 Parte 6: Conclusiones y Aprendizajes
 
 ### Principales Aprendizajes
 ```bash
