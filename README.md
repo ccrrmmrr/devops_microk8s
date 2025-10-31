@@ -38,13 +38,12 @@
 
 ### Parte 3: Frontend v2.2
 
-Código modificado de Angular (screenshots de .html y .ts)
-- [Código modificado de Angular](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/pasrt03/codigo_java.PNG)
-Link a tu imagen en Docker Hub: https://hub.docker.com/r/tu-usuario/angular-frontend/tags
-- [docker images](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/pasrt03/docker_hub.PNG)
-- [kubectl get pods -w](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/pasrt03/roll_out.PNG)
-- [botón "Ver Info del Sistema"](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/pasrt03/info del sistema.PNG)
-- [información del sistema cargada](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/pasrt03/boton_ver info del sistema.PNG)
+- [Código modificado de Angular](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/codigo_java.PNG)
+- [Link a tu imagen en Docker Hub](https://hub.docker.com/repository/docker/carloscrmr/angular-frontend/general)
+- [docker images](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/docker_hub.PNG)
+- [kubectl get pods -w](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/roll_out.PNG)
+- [botón "Ver Info del Sistema"](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/info_sistema.PNG)
+- [información del sistema cargada](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/boton_sistema.PNG)
 
 
 ### Parte 4: Gestión de Versiones
