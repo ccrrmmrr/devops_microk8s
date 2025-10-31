@@ -21,8 +21,8 @@
 ### Capturas de pantalla
 
 - [microk8s status](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_microk8s.PNG)
-- [kubectl get all -n proyecto-integrador](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_kubectl get all -n proyecto-integrador.PNG)
-- [navegador accediendo al frontend](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_front_end_inicial.PNG)
+- [Pods running](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_kubectl_get_all.PNG)
+- [navegador accediendo al frontend](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/par:wq!te01_front_end_inicial.PNG)
 - [Instancia Cloud](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_InstanciaCloud.PNG)
 
 
