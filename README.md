@@ -32,7 +32,7 @@
 
 ### Especificaciones Técnicas
 - **Proveedor:** Digital Ocean
-- **Instancia:** `carlos-martinez-ramirez-k8s`
+- **Instancia:** `carlos-martinez-k8s`
 - **Sistema Operativo:** Ubuntu 24.04 LTS
 - **Recursos:** 2 vCPUs, 4GB RAM
 - **Cluster:** microk8s v1.30
@@ -80,7 +80,7 @@ devops_microk8s/
 @GetMapping("/api/info")
 public ResponseEntity<Map<String, Object>> getInfo() {
     Map<String, Object> info = new HashMap<>();
-    info.put("alumno", "César Ramírez");
+    info.put("alumno", "Carlos Martinez");
     info.put("version", "v2.1");
     info.put("curso", "Docker & Kubernetes - i-Quattro");
     info.put("timestamp", LocalDateTime.now().toString());
@@ -112,7 +112,48 @@ kubectl rollout status deployment/api -n proyecto-integrador
 - [API Info](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/api_info.PNG)
 
 
-### Parte 3: Frontend v2.2
+## 🎨 Parte 3: Frontend v2.2
+
+### Modificaciones en Angular 
+
+#### app.component.html
+```bash
+
+<div class="form-group">
+  <button (click)="getSystemInfo()" class="btn-primary">
+    Ver Info del Sistema
+  </button>
+</div>
+
+<div *ngIf="systemInfo" class="card info-section">
+  <h3>Información del Sistema</h3>
+  <p><strong>Alumno:</strong> {{ systemInfo.alumno }}</p>
+  <p><strong>Versión:</strong> {{ systemInfo.version }}</p>
+  <!-- ... más campos ... -->
+</div>
+
+```
+
+#### app.component.ts
+
+```bash
+
+systemInfo: any = null;
+
+getSystemInfo(): void {
+  this.http.get('/api/info').subscribe({
+    next: (data) => {
+      this.systemInfo = data;
+      this.success = 'Información del sistema cargada';
+    },
+    error: (err) => {
+      this.error = 'Error al obtener información del sistema';
+    }
+  });
+}
+```
+
+### Screemshots
 
 - [Código modificado de Angular](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/cod_change.PNG)
 - [Link a tu imagen en Docker Hub](https://hub.docker.com/repository/docker/carloscrmr/angular-frontend/general)
