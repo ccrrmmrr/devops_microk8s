@@ -38,7 +38,7 @@
 
 ### Parte 3: Frontend v2.2
 
-- [Código modificado de Angular](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/codigo_java.PNG)
+- [Código modificado de Angular](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/cod_change.PNG)
 - [Link a tu imagen en Docker Hub](https://hub.docker.com/repository/docker/carloscrmr/angular-frontend/general)
 - [docker images](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/docker_hub.PNG)
 - [kubectl get pods -w](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/roll_out.PNG)
@@ -53,7 +53,7 @@
 - [proceso de rollback (undo)](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/rollback_undo.PNG)
 - [/api/info dejó de funcionar después del rollback](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/api_info_NOK.PNG)
 - [proceso de rollforward (undo)](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/rollforward.PNG)
-- [/api/info dejó vuelve a funcionar](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/api_info_OK.PNG)
+- [/api/info vuelve a funcionar](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/api_info_OK.PNG)
 - [Explicación en tus propias palabras: ¿Qué hace kubectl rollout undo?]
 
 
