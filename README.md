@@ -28,26 +28,11 @@
                          └─────────────┘
 ```
 
-┌─────────────────┐ ┌──────────────────┐ ┌─────────────────┐
-│ Frontend │ │ Backend │ │ Base de │
-│ Angular │◄──►│ Spring Boot │◄──►│ Datos │
-│ v2.2 │ │ v2.1 │ │ PostgreSQL │
-└─────────────────┘ └──────────────────┘ └─────────────────┘
-│ │ │
-│ │ │
-└───────────────────────┼───────────────────────┘
-│
-┌──────▼──────┐
-│ Redis │
-│ Cache │
-└─────────────┘
-
-
 ## 🛠️ Parte 1:Configuración del Ambiente
 
 ### Especificaciones Técnicas
 - **Proveedor:** Digital Ocean
-- **Instancia:** `cesar-ramirez-k8s`
+- **Instancia:** `carlos-martinez-ramirez-k8s`
 - **Sistema Operativo:** Ubuntu 24.04 LTS
 - **Recursos:** 2 vCPUs, 4GB RAM
 - **Cluster:** microk8s v1.30
@@ -86,8 +71,39 @@ devops_microk8s/
 - [Instancia Cloud](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part01/parte01_InstanciaCloud.PNG)
 
 
-### Parte 2: Backend v2.1
+## 🔧 Parte 2: Backend v2.1
 
+### Nuevo Endpoint Implementado
+
+```bash
+
+@GetMapping("/api/info")
+public ResponseEntity<Map<String, Object>> getInfo() {
+    Map<String, Object> info = new HashMap<>();
+    info.put("alumno", "César Ramírez");
+    info.put("version", "v2.1");
+    info.put("curso", "Docker & Kubernetes - i-Quattro");
+    info.put("timestamp", LocalDateTime.now().toString());
+    info.put("hostname", System.getenv("HOSTNAME"));
+    return ResponseEntity.ok(info);
+}
+```
+
+### Workflow de Actualización
+
+```bash
+
+# Build y push de la imagen
+docker build -t ccrrmmrr/springboot-api:v2.1 .
+docker push ccrrmmrr/springboot-api:v2.1
+
+# Actualización en Kubernetes
+kubectl apply -f k8s/05-backend/api-deployment.yaml
+kubectl rollout status deployment/api -n proyecto-integrador
+
+```
+
+### Screemshots
 - [Código del endpoint agregado](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/codigo_java.PNG)
 - [docker images](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/docker_images.PNG)
 - [docker_hub](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part02/dockerHub_tags.PNG)
