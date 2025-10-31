@@ -31,12 +31,17 @@
 ## 🛠️ Parte 1:Configuración del Ambiente
 
 ### Especificaciones Técnicas
+```text
 - **Proveedor:** Digital Ocean
 - **Instancia:** `carlos-martinez-k8s`
 - **Sistema Operativo:** Ubuntu 24.04 LTS
 - **Recursos:** 2 vCPUs, 4GB RAM
 - **Cluster:** microk8s v1.30
 - **Network:** VPC con MetalLB
+- **Droplet IP:** `138.68.0.0153`
+- **VPC Range:** `138.68.0.0/20`
+- **LoadBalancer IP:**`138.68.10.100`
+```
 
 ### Addons de microk8s Habilitados
 ```bash
@@ -45,7 +50,7 @@ microk8s enable dns
 microk8s enable storage
 microk8s enable ingress
 microk8s enable metrics-server
-microk8s enable metallb:10.120.0.100-10.120.0.110
+microk8s enable metallb:138.68.10.100-138.68.10.110
 ```
 
 ### 📁 Estructura del Proyecto
