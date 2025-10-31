@@ -175,7 +175,7 @@ kubectl apply -f k8s/06-frontend/frontend-deployment.yaml
 - [información del sistema cargada](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part03/boton_sistema.PNG)
 
 
-### 🔄 Parte 4: Gestión de Versiones
+## 🔄 Parte 4: Gestión de Versiones
 
 #### Comandos de Rollout:
 
@@ -215,8 +215,8 @@ Kubernetes.
 - [/api/info vuelve a funcionar](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part04/api_info_OK.PNG)
 
 
-### 🌐 Parte 5: Ingress + MetalLB
-#### 🎯 Objetivo Cumplido
+## 🌐 Parte 5: Ingress + MetalLB
+### 🎯 Objetivo Cumplido
 Configurar acceso externo a la aplicación mediante Ingress Controller y MetalLB como LoadBalancer en Digital Ocean.
 
 #### 🔧 Configuración Implementada
@@ -285,14 +285,14 @@ spec:
       targetPort: 443
 ```
 
-#### MetalLB Configuration
+##### MetalLB Configuration
 ```bash
 # Habilitar MetalLB con rango de IPs en la VPC
 microk8s enable metallb:138.68.10.100-138.68.10.110
 ```
 ### 🚀 Resultado Final
 
-#### Estado del LoadBalancer
+##### Estado del LoadBalancer
 ```bash
 kubectl get svc -n ingress
 ```
@@ -301,7 +301,7 @@ NAME                                TYPE           CLUSTER-IP       EXTERNAL-IP 
 nginx-ingress-microk8s-controller   LoadBalancer   10.152.183.197   138.68.10.100   80:32747/TCP,443:31223/TCP   15m
 ```
 
-#### Estado del Ingress
+##### Estado del Ingress
 ```bash
 kubectl get ingress -n proyecto-integrador
 ```
@@ -311,7 +311,7 @@ app-ingress   public   *       127.0.0.1   80      43h
 ```
 
 ### 🔍 Explicación Técnica
-#### Flujo de Tráfico
+##### Flujo de Tráfico
 ```text
 Internet User
     ↓
@@ -328,7 +328,7 @@ frontend-service (/) | api-service (/api, /actuator)
 frontend Pods | api Pods
 ```
 
-#### Routing Configurado
+##### Routing Configurado
 ```
 - / → frontend-service:80 (Angular Frontend)
 - /api/* → api-service:8080 (Spring Boot API)
@@ -336,7 +336,7 @@ frontend Pods | api Pods
 
 ```
 ### ✅ Verificación de Funcionamiento
-#### Desde Terminal
+##### Desde Terminal
 ```bash
 # Frontend
 curl http://138.68.10.100/
@@ -355,7 +355,7 @@ curl http://138.68.10.100/actuator/health
   "hostname": "api-d89c7785f-plbrd"
 }
 ```
-#### Desde Navegador
+##### Desde Navegador
 ```
 - URL Principal: http://138.68.10.100/
 - Funcionalidad: Formulario de registro + "Ver Info del Sistema"
@@ -385,18 +385,6 @@ curl http://138.68.10.100/actuator/health
 - Load Balancing Funcional entre múltiples pods
 - Health Checks Operativos
 ```
-
-### Screemshots
-
-- [Verificar Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/verificar_ingres.PNG)
-- [Describe Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/describe_ingres.PNG)
-- [Estado LoadBalance](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/LB_status.PNG)
-- [fromtemd](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/frontend_NewIP.PNG)
-- [EndPoints](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/api_endpoints.PNG)
-
-
-### 📊 Resultados y Métricas
-
 #### Estado Final del Cluster
 ```bash
 # Todos los recursos desplegados
@@ -410,9 +398,19 @@ kubectl top pods -n proyecto-integrador
 
 ```
 
-### 🎯 Conclusiones y Aprendizajes
+### Screemshots
 
-#### Principales Aprendizajes
+- [Verificar Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/verificar_ingres.PNG)
+- [Describe Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/describe_ingres.PNG)
+- [Estado LoadBalance](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/LB_status.PNG)
+- [fromtemd](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/frontend_NewIP.PNG)
+- [EndPoints](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/api_endpoints.PNG)
+
+
+
+## 🎯 Parte6. Conclusiones y Aprendizajes
+
+### Principales Aprendizajes
 ```bash
 1. Workflow CI/CD en Kubernetes:
    Aprendí el proceso completo de build, push y deploy de aplicaciones en un cluster Kubernetes.
@@ -427,7 +425,7 @@ kubectl top pods -n proyecto-integrador
    Desarrollé habilidades para diagnosticar y resolver problemas comunes en deployments.
 ```
 
-#### Aplicaciones en Proyectos Reales
+### Aplicaciones en Proyectos Reales
 ```bash
 Este proyecto simula un workflow empresarial real donde:
 
