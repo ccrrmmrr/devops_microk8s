@@ -61,19 +61,8 @@ Link a tu imagen en Docker Hub: https://hub.docker.com/r/tu-usuario/angular-fron
 
 ### Parte 5: Ingress + MetalLB
 
-Screenshot de kubectl get ingress mostrando la IP asignada
 - [Verificar Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/verificar_ingres.PNG)
-
-Screenshot de kubectl describe ingress mostrando las rutas configuradas
 - [Describe Ingres](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/describe_ingres.PNG)
-
-Screenshot del navegador accediendo a http://<IP-METALLB>/ (frontend)
 - [fromtemd](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/frontend.PNG)
-
-Screenshot de EndPoints
 - [EndPoints](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/parte5-endpoints-test.PNG)
-
-Screenshot de curl a /actuator/health mostrando status UP
-- [proceso de rollforward (undo)](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/rollforward.PNG)
-IP del Ingress (anotar)
-- [/api/info dejó vuelve a funcionar](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/ip_ingres.PNG)
+- [IP del Ingress](https://github.com/ccrrmmrr/devops_microk8s/tree/main/Screemshots/part05/ip_ingres.PNG)
